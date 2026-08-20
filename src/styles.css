@@ -154,3 +154,31 @@
     color: var(--color-foreground);
   }
 }
+
+@layer base {
+  html,
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@utility card-flat {
+  background-color: var(--color-card);
+  border-radius: 8px;
+  box-shadow: 0 1px 2px oklch(0.22 0.02 260 / 0.06);
+}
+
+@utility map-grid {
+  background-color: var(--color-map);
+  background-image:
+    linear-gradient(oklch(1 0 0 / 0.55) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(1 0 0 / 0.55) 1px, transparent 1px),
+    linear-gradient(oklch(1 0 0 / 0.25) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(1 0 0 / 0.25) 1px, transparent 1px);
+  background-size:
+    72px 72px,
+    72px 72px,
+    18px 18px,
+    18px 18px;
+}
