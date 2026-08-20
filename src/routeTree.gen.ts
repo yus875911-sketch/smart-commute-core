@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CompleteRouteImport } from './routes/complete'
 import { Route as FindingRouteImport } from './routes/finding'
+import { Route as MeRouteImport } from './routes/me'
 import { Route as OrdersRouteImport } from './routes/orders'
 import { Route as TripRouteImport } from './routes/trip'
 
@@ -30,6 +31,11 @@ const FindingRoute = FindingRouteImport.update({
   path: '/finding',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MeRoute = MeRouteImport.update({
+  id: '/me',
+  path: '/me',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OrdersRoute = OrdersRouteImport.update({
   id: '/orders',
   path: '/orders',
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/complete': typeof CompleteRoute
   '/finding': typeof FindingRoute
+  '/me': typeof MeRoute
   '/orders': typeof OrdersRoute
   '/trip': typeof TripRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/complete': typeof CompleteRoute
   '/finding': typeof FindingRoute
+  '/me': typeof MeRoute
   '/orders': typeof OrdersRoute
   '/trip': typeof TripRoute
 }
@@ -60,21 +68,23 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/complete': typeof CompleteRoute
   '/finding': typeof FindingRoute
+  '/me': typeof MeRoute
   '/orders': typeof OrdersRoute
   '/trip': typeof TripRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/complete' | '/finding' | '/orders' | '/trip'
+  fullPaths: '/' | '/complete' | '/finding' | '/me' | '/orders' | '/trip'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/complete' | '/finding' | '/orders' | '/trip'
-  id: '__root__' | '/' | '/complete' | '/finding' | '/orders' | '/trip'
+  to: '/' | '/complete' | '/finding' | '/me' | '/orders' | '/trip'
+  id: '__root__' | '/' | '/complete' | '/finding' | '/me' | '/orders' | '/trip'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CompleteRoute: typeof CompleteRoute
   FindingRoute: typeof FindingRoute
+  MeRoute: typeof MeRoute
   OrdersRoute: typeof OrdersRoute
   TripRoute: typeof TripRoute
 }
@@ -102,6 +112,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FindingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/me': {
+      id: '/me'
+      path: '/me'
+      fullPath: '/me'
+      preLoaderRoute: typeof MeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/orders': {
       id: '/orders'
       path: '/orders'
@@ -123,6 +140,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CompleteRoute: CompleteRoute,
   FindingRoute: FindingRoute,
+  MeRoute: MeRoute,
   OrdersRoute: OrdersRoute,
   TripRoute: TripRoute,
 }
