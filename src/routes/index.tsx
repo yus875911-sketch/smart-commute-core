@@ -65,7 +65,7 @@ function HomePage() {
               defaultValue="世纪大道地铁站 2 号口"
               className="w-full bg-transparent text-[14px] outline-none"
             />
-            <span className="text-[12px] text-primary">切换</span>
+            <span className="shrink-0 text-[12px] text-primary">切换</span>
           </div>
           <div className="flex items-center gap-2 pt-2.5">
             <span className="size-2 rounded-full bg-destructive" />
