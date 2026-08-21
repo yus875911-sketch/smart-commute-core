@@ -16,6 +16,7 @@ import { Route as MeRouteImport } from './routes/me'
 import { Route as OrdersRouteImport } from './routes/orders'
 import { Route as TrackingRouteImport } from './routes/tracking'
 import { Route as TripRouteImport } from './routes/trip'
+import { Route as WalletRouteImport } from './routes/wallet'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +53,11 @@ const TripRoute = TripRouteImport.update({
   path: '/trip',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WalletRoute = WalletRouteImport.update({
+  id: '/wallet',
+  path: '/wallet',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +67,7 @@ export interface FileRoutesByFullPath {
   '/orders': typeof OrdersRoute
   '/tracking': typeof TrackingRoute
   '/trip': typeof TripRoute
+  '/wallet': typeof WalletRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +77,7 @@ export interface FileRoutesByTo {
   '/orders': typeof OrdersRoute
   '/tracking': typeof TrackingRoute
   '/trip': typeof TripRoute
+  '/wallet': typeof WalletRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,13 +88,29 @@ export interface FileRoutesById {
   '/orders': typeof OrdersRoute
   '/tracking': typeof TrackingRoute
   '/trip': typeof TripRoute
+  '/wallet': typeof WalletRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/complete' | '/finding' | '/me' | '/orders' | '/tracking' | '/trip'
+    | '/'
+    | '/complete'
+    | '/finding'
+    | '/me'
+    | '/orders'
+    | '/tracking'
+    | '/trip'
+    | '/wallet'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/complete' | '/finding' | '/me' | '/orders' | '/tracking' | '/trip'
+  to:
+    | '/'
+    | '/complete'
+    | '/finding'
+    | '/me'
+    | '/orders'
+    | '/tracking'
+    | '/trip'
+    | '/wallet'
   id:
     | '__root__'
     | '/'
@@ -96,6 +120,7 @@ export interface FileRouteTypes {
     | '/orders'
     | '/tracking'
     | '/trip'
+    | '/wallet'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,6 +131,7 @@ export interface RootRouteChildren {
   OrdersRoute: typeof OrdersRoute
   TrackingRoute: typeof TrackingRoute
   TripRoute: typeof TripRoute
+  WalletRoute: typeof WalletRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -159,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TripRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/wallet': {
+      id: '/wallet'
+      path: '/wallet'
+      fullPath: '/wallet'
+      preLoaderRoute: typeof WalletRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -170,6 +203,7 @@ const rootRouteChildren: RootRouteChildren = {
   OrdersRoute: OrdersRoute,
   TrackingRoute: TrackingRoute,
   TripRoute: TripRoute,
+  WalletRoute: WalletRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
