@@ -155,9 +155,12 @@ function OrdersPage() {
                     去支付
                   </Link>
                 ) : (
-                  <button className="flex items-center rounded-[8px] border border-border px-3 py-1.5 text-[13px] text-muted-foreground">
+                  <Link
+                    to="/tracking"
+                    className="flex items-center rounded-[8px] border border-border px-3 py-1.5 text-[13px] text-muted-foreground"
+                  >
                     订单详情 <ChevronRight className="size-3.5" />
-                  </button>
+                  </Link>
                 )}
               </div>
             </div>

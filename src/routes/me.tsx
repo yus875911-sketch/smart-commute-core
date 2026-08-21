@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   UserRound,
   ShieldCheck,
@@ -34,9 +34,9 @@ const coupons = [
 ];
 
 const settings = [
-  { i: Headphones, t: "客服中心", s: "计费规则 / 在线工单" },
-  { i: BadgePercent, t: "退款售后", s: "退款进度 / 举证上传" },
-  { i: Settings, t: "设置中心", s: "安全 / 隐私 / 关于" },
+  { i: Headphones, t: "客服中心", s: "计费规则 / 在线工单", to: "/support" as const },
+  { i: BadgePercent, t: "退款售后", s: "退款进度 / 举证上传", to: "/support" as const },
+  { i: Settings, t: "设置中心", s: "安全 / 隐私 / 关于", to: "/me" as const },
 ];
 
 function MePage() {
@@ -83,9 +83,12 @@ function MePage() {
             <button className="rounded-[8px] bg-primary py-2.5 text-[14px] font-medium text-primary-foreground">
               充值（充 100 送 20）
             </button>
-            <button className="flex items-center justify-center gap-1.5 rounded-[8px] border border-border py-2.5 text-[14px]">
+            <Link
+              to="/wallet"
+              className="flex items-center justify-center gap-1.5 rounded-[8px] border border-border py-2.5 text-[14px]"
+            >
               <Wallet className="size-4" /> 我的钱包
-            </button>
+            </Link>
           </div>
         </Section>
 
@@ -118,23 +121,24 @@ function MePage() {
         <Section title="营销活动">
           <div className="grid grid-cols-3 gap-2 text-center">
             {[
-              { i: Gift, t: "首单立减", s: "最高减 20" },
+              { i: Gift, t: "首单立减", s: "最高减 25" },
               { i: Ticket, t: "新人专享", s: "3 张券" },
               { i: Users, t: "邀请有礼", s: "得佣金" },
             ].map((a) => (
-              <div key={a.t} className="rounded-[8px] bg-muted py-3">
+              <Link to="/promo" key={a.t} className="rounded-[8px] bg-muted py-3">
                 <a.i className="mx-auto mb-1 size-5 text-primary" />
                 <div className="text-[13px] font-medium">{a.t}</div>
                 <div className="text-[11px] text-muted-foreground">{a.s}</div>
-              </div>
+              </Link>
             ))}
           </div>
         </Section>
 
         <Section className="mb-6 p-0">
           {settings.map((s, i) => (
-            <button
+            <Link
               key={s.t}
+              to={s.to}
               className={
                 "flex w-full items-center gap-3 px-4 py-3.5 text-left" +
                 (i ? " border-t border-border" : "")
@@ -146,7 +150,7 @@ function MePage() {
                 <div className="text-[12px] text-muted-foreground">{s.s}</div>
               </div>
               <ChevronRight className="size-4 text-muted-foreground" />
-            </button>
+            </Link>
           ))}
         </Section>
       </div>
